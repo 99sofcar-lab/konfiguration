@@ -7,6 +7,7 @@ on:
 permissions:
   id-token: write
   contents: read
+  packages: read
 
 env:
   CONTAINER_APP: ca-news-flash
@@ -16,7 +17,17 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Debug info
+        run: |
+          echo "GitHub workspace: ${{ github.workspace }}"
+          echo "Current directory: $(pwd)"
+          echo "Files in current directory:"
+          ls -la
 
       - uses: azure/login@v2
         with:
