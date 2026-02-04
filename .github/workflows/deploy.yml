@@ -3,10 +3,6 @@ name: Build and Deploy
 on:
   push:
     branches: [main]
-    paths:
-      - 'application/**'
-      - 'Dockerfile'
-      - '.github/workflows/deploy.yml'
 
 permissions:
   id-token: write
